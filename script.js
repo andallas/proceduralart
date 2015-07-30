@@ -10,6 +10,7 @@ noise.seed(seed % 10000);
 
 var scene = {};
 var ctx;
+var canvas;
 var width;
 var height;
 
@@ -17,12 +18,12 @@ var imageData;
 var buffer;
 
 function setupCanvas() {
-	var c = document.getElementById("myCanvas");
-	ctx = c.getContext("2d");
+	canvas = document.getElementById("myCanvas");
+	ctx = canvas.getContext("2d");
 	ctx.fillStyle = 'black';
 
-	width = c.width;
-	height = c.height;
+	width = canvas.width;
+	height = canvas.height;
 
 	ctx.fillRect(0,0,width, height);
 }
@@ -385,6 +386,11 @@ function draw() {
 	drawTerrain();
 	
 	applyBuffer();
+
+	var image = new Image();
+	image.id = "pic"
+	image.src = canvas.toDataURL();
+	document.getElementById('proceduralArt').appendChild(image);
 }
 
 draw();
